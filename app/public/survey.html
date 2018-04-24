@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>FriendFinder Survey</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+	<div class="container">
+
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">About You</h4>
+			</div>
+			<div class="panel-body">
+
+				<form role="form">
+
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name">
+					</div>
+
+					<div class="form-group">
+						<label for="photo">Link to Photo Image</label>
+						<input type="text" class="form-control" id="photo">
+					</div>
+					<div id="questionsDiv">
+						<h4>Your friends would describe you as laid-back.</h4>
+						<select id="q1" class="questionClass">
+							<option value="0">Strongly Disagree</option>
+							<option value="1">Disagree</option>
+							<option value="2">Neutral</option>
+							<option value="3">Agree</option>
+							<option value="4">Strongly Agree</option>
+						</select>
+						<h4>After a social event, you need time to relax on your own.</h4>
+						<select id="q2" class="questionClass">
+							<option value="0">Strongly Disagree</option>
+							<option value="1">Disagree</option>
+							<option value="2">Neutral</option>
+							<option value="3">Agree</option>
+							<option value="4">Strongly Agree</option>
+						</select>
+						<h4>You are a very active person and enjoy spending time outdoors.</h4>
+						<select id="q3" class="questionClass">
+							<option value="0">Strongly Disagree</option>
+							<option value="1">Disagree</option>
+							<option value="2">Neutral</option>
+							<option value="3">Agree</option>
+							<option value="4">Strongly Agree</option>
+						</select>
+						<h4>You like to spend time 'out on the town' and will stay out all night having fun.</h4>
+						<select id="q4" class="questionClass">
+							<option value="0">Strongly Disagree</option>
+							<option value="1">Disagree</option>
+							<option value="2">Neutral</option>
+							<option value="3">Agree</option>
+							<option value="4">Strongly Agree</option>
+						</select>
+						<h4>You live according to a schedule and are not spontaneous.</h4>
+						<select id="q5" class="questionClass">
+							<option value="0">Strongly Disagree</option>
+							<option value="1">Disagree</option>
+							<option value="2">Neutral</option>
+							<option value="3">Agree</option>
+							<option value="4">Strongly Agree</option>
+						</select>
+						<h4>You enjoy the quiet life.</h4>
+						<select id="q6" class="questionClass">
+							<option value="0">Strongly Disagree</option>
+							<option value="1">Disagree</option>
+							<option value="2">Neutral</option>
+							<option value="3">Agree</option>
+							<option value="4">Strongly Agree</option>
+						</select>
+						<h4>You love animals and having many pets.</h4>
+						<select id="q7" class="questionClass">
+							<option value="0">Strongly Disagree</option>
+							<option value="1">Disagree</option>
+							<option value="2">Neutral</option>
+							<option value="3">Agree</option>
+							<option value="4">Strongly Agree</option>
+						</select>
+						<h4>You crave adventure.</h4>
+						<select id="q8" class="questionClass">
+							<option value="0">Strongly Disagree</option>
+							<option value="1">Disagree</option>
+							<option value="2">Neutral</option>
+							<option value="3">Agree</option>
+							<option value="4">Strongly Agree</option>
+						</select>
+						<h4>You seek the finer things in life and pursue creature comforts.</h4>
+						<select id="q9" class="questionClass">
+							<option value="0">Strongly Disagree</option>
+							<option value="1">Disagree</option>
+							<option value="2">Neutral</option>
+							<option value="3">Agree</option>
+							<option value="4">Strongly Agree</option>
+						</select>
+						<h4>You consider yourself an intellectual and prize knowledge and understanding.</h4>
+						<select id="q10" class="questionClass">
+							<option value="0">Strongly Disagree</option>
+							<option value="1">Disagree</option>
+							<option value="2">Neutral</option>
+							<option value="3">Agree</option>
+							<option value="4">Strongly Agree</option>
+						</select>
+
+					</div>
+
+
+					<button type="submit" class="btn btn-primary submit">Submit</button>
+				</form>
+
+			</div>
+		</div>
+
+	</div>
+	</div>
+
+
+	<footer class="footer">
+		<div class="container">
+			<p>
+				<a href="/api/friends">Friends API Link</a> |
+				<a href="/api/waitlist">API Wait List</a> |
+				<a href="https://github.com/afhaque/HotRestaurant">GitHub Repo</a>
+			</p>
+		</div>
+	</footer>
+
+
+	</div>
+
+</body>
+
+</html>
+<script type="text/javascript">
+	$(".submit").on("click", function (event) {
+		event.preventDefault();
+
+		// Here we grab the form elements
+		var friendArr = $(".questionClass".each(function (i) {
+
+		}));
+	})
+</script>
