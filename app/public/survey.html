@@ -150,8 +150,13 @@
 		event.preventDefault();
 
 		// Here we grab the form elements
-		var friendArr = $(".questionClass".each(function (i) {
+		var friendArr = [];
+		console.log("running");
+		$(".questionClass option:selected").each(function (i, answer) {
+			console.log(answer.value);
+			friendArr.push(answer.value);
 
-		}));
+		});
+		console.log("friendArr " + friendArr);
 	})
 </script>
