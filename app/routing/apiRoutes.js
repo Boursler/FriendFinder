@@ -11,8 +11,10 @@ module.exports = function (app) {
 	});
 	app.post("/api/friends", function (req, res) {
 		var bestFriend = {};
+		var lowest_diff = [];
+		console.log("from server: " + JSON.stringify(req.body));
 		//compatability logic
 		//for finding friends: create an array of the lowest total difference, select a random index w/in that array. If there is only 1, that person will be selected. If more than 1, a random choice
-		res.json(bestFriend);
+		res.json(true);
 	});
 }

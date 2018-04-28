@@ -186,6 +186,7 @@
 		else {
 			// Here we grab the form elements
 			var friendArr = [];
+			var friend = {};
 			console.log("running");
 			$(".questionClass option:selected").each(function (i, answer) {
 				if (answer.value === "0") {
@@ -198,7 +199,24 @@
 
 			});
 			console.log("friendArr " + friendArr);
+			//name, photo, scores
+			friend = {
+				"name": $("#name").val().trim(),
+				"photo": $("#photo").val().trim(),
+				"scores": friendArr
+			};
+			console.log(JSON.stringify(friend));
+			$.post("/api/friends", friend,
+				function (data) {
+					if (data) {
+						//return data in modal
+						console.log(data)
+					}
+					else { }
+					//no friend?
+				});
+
 		}
-	})
+	});
 
 </script>
