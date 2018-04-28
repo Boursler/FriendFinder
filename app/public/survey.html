@@ -41,16 +41,16 @@
 			</div>
 			<div class="panel-body">
 
-				<form role="form">
+				<form role="form" class="formClass">
 
 					<div class="form-group">
 						<label for="name">Name</label>
-						<input type="text" class="form-control" id="name">
+						<input type="text" class="form-control has-warning" id="name" required>
 					</div>
 
 					<div class="form-group">
 						<label for="photo">Link to Photo Image</label>
-						<input type="text" class="form-control" id="photo">
+						<input type="text" class="form-control has-warning" id="photo" required>
 					</div>
 					<div id="questionsDiv">
 						<h4>Your friends would describe you as laid-back.</h4>
@@ -174,22 +174,31 @@
 
 </html>
 <script type="text/javascript">
+
 	$(".submit").on("click", function (event) {
 		event.preventDefault();
+		console.log($("#name").val() + $("#photo").val());
 
-		// Here we grab the form elements
-		var friendArr = [];
-		console.log("running");
-		$(".questionClass option:selected").each(function (i, answer) {
-			if (answer.value === "0") {
-				$(".modal").modal();
-			}
-			else {
-				console.log(answer.value);
-				friendArr.push(answer.value);
-			}
+		if ($("#name").val() === "" || $("#photo").val() === "") {
+			console.log("event stopped");
+			event.stopPropagation();
+		}
+		else {
+			// Here we grab the form elements
+			var friendArr = [];
+			console.log("running");
+			$(".questionClass option:selected").each(function (i, answer) {
+				if (answer.value === "0") {
+					$(".modal").modal();
+				}
+				else {
+					console.log(answer.value);
+					friendArr.push(answer.value);
+				}
 
-		});
-		console.log("friendArr " + friendArr);
+			});
+			console.log("friendArr " + friendArr);
+		}
 	})
+	//for finding friends: create an array of the lowest total difference, select a random index w/in that array. If there is only 1, that person will be selected. If more than 1, a random choice
 </script>
