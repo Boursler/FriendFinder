@@ -13,6 +13,7 @@ module.exports = function (app) {
 		var bestFriend = {};
 		var diffArr = [];
 		var diffAgg = [];
+		var sameDiff = [];
 		var total_diff = 0;
 		selfArr = req.body.scores;
 		console.log("from server: " + selfArr);
@@ -20,23 +21,32 @@ module.exports = function (app) {
 		//for finding friends: create an array of the lowest total difference, select a random index w/in that array. If there is only 1, that person will be selected. If more than 1, a random choice
 		for (let i = 0; i < friendData.length; i++) {
 			var scores = friendData[i].scores;
-
+			var friend = friendData[i].name;
 			for (let i = 0; i < scores.length; i++) {
-				console.log("self" + scores);
-				console.log("friend " + selfArr);
+				// console.log("self" + scores);
+				// console.log("friend " + selfArr);
 				var diff = Math.abs(parseInt(scores[i]) - parseInt(selfArr[i]));
-				console.log("diff " + diff);
+				// console.log("diff " + diff);
 
-				diffArr.push(diff);
-				console.log(diffArr);
+				diffArr.push({ diff: diff, friend: friend });
+				// console.log(diffArr);
 			}
-			console.log(diffArr);
+			// console.log(diffArr);
 			for (let i = 0; i < diffArr.length; i++) {
-				total_diff += diffArr[i];
+
+				total_diff += diffArr[i].diff;
+				friend = diffArr[i].friend;
 			}
-			diffAgg.push(total_diff);
+			diffAgg.push({ total_diff: total_diff, name: friend });
 		}
-		console.log("diffAgg " + diffAgg);
+		console.log("diffAgg before sort " + JSON.stringify(diffAgg));
+		diffAgg = diffAgg.sort(function (a, b) {
+			return a.total_diff - b.total_diff;
+		});
+
+
+
+		console.log("diffAgg " + JSON.stringify(diffAgg));
 		//add selfArr to friendData at some point here
 		res.json(true);
 	});
