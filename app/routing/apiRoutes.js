@@ -11,10 +11,33 @@ module.exports = function (app) {
 	});
 	app.post("/api/friends", function (req, res) {
 		var bestFriend = {};
-		var lowest_diff = [];
-		console.log("from server: " + JSON.stringify(req.body));
+		var diffArr = [];
+		var diffAgg = [];
+		var total_diff = 0;
+		selfArr = req.body.scores;
+		console.log("from server: " + selfArr);
 		//compatability logic
 		//for finding friends: create an array of the lowest total difference, select a random index w/in that array. If there is only 1, that person will be selected. If more than 1, a random choice
+		for (let i = 0; i < friendData.length; i++) {
+			var scores = friendData[i].scores;
+
+			for (let i = 0; i < scores.length; i++) {
+				console.log("self" + scores);
+				console.log("friend " + selfArr);
+				var diff = Math.abs(parseInt(scores[i]) - parseInt(selfArr[i]));
+				console.log("diff " + diff);
+
+				diffArr.push(diff);
+				console.log(diffArr);
+			}
+			console.log(diffArr);
+			for (let i = 0; i < diffArr.length; i++) {
+				total_diff += diffArr[i];
+			}
+			diffAgg.push(total_diff);
+		}
+		console.log("diffAgg " + diffAgg);
+		//add selfArr to friendData at some point here
 		res.json(true);
 	});
 }
