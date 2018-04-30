@@ -54,7 +54,7 @@
 						<a id="photoModal" target="_blank">Link to photo</a>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-modal">Close</button>
 
 					</div>
 				</div>
@@ -187,8 +187,7 @@
 		<div class="container">
 			<p>
 				<a href="/api/friends">Friends API Link</a> |
-				<a href="/api/waitlist">API Wait List</a> |
-				<a href="https://github.com/afhaque/HotRestaurant">GitHub Repo</a>
+				<a href="https://github.com/Boursler/FriendFinder">GitHub Repo</a>
 			</p>
 		</div>
 	</footer>
@@ -252,9 +251,13 @@
 
 				else { }
 				//no friend?
+
 			});
 
 		}
+	});
+	$("#close-modal").click(function () {
+		window.location = window.location.origin;
 	});
 
 </script>
