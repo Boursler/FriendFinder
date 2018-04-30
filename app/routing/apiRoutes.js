@@ -43,6 +43,16 @@ module.exports = function (app) {
 		diffAgg = diffAgg.sort(function (a, b) {
 			return a.total_diff - b.total_diff;
 		});
+		sameDiff.push(diffAgg[0].total_diff);
+		for (let i = 1; i < diffAgg.length; i++) {
+			let lowest = diffAgg[0].total_diff;
+			let compare = diffAgg[i].total_diff;
+			if (lowest === compare) {
+				sameDiff.push(compare);
+			}
+		}
+		console.log(JSON.stringify(sameDiff));
+
 
 
 
