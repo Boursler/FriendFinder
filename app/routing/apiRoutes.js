@@ -11,7 +11,7 @@ module.exports = function (app) {
 	});
 	app.post("/api/friends", function (req, res) {
 		var bestFriend = {};
-
+		var best_friend_index;
 		var diffAgg = [];
 		var sameDiff = [];
 
@@ -56,11 +56,20 @@ module.exports = function (app) {
 		}
 		console.log("same diff " + JSON.stringify(sameDiff));
 
+		best_friend_index = Math.floor(Math.random() * (sameDiff.length + 1));
+		bestFriend = sameDiff[best_friend_index];
+		console.log(JSON.stringify(bestFriend) + " best friend ever");
+		for (let i = 0; i < friendData.length; i++) {
+			if (friendData[i].name === bestFriend.name) {
+				bestFriend = friendData[i].name + friendData[i].photo;
+			}
 
-
-
-		console.log("diffAgg " + JSON.stringify(diffAgg));
+		}
+		console.log(bestFriend + " best friend ever 2");
+		// console.log("diffAgg " + JSON.stringify(diffAgg));
 		//add selfArr to friendData at some point here
-		res.json(true);
+		res.json(bestFriend);
+		friendData.push(req.body);
+		console.log(JSON.stringify(friendData));
 	});
 }

@@ -206,12 +206,16 @@
 				"scores": friendArr
 			};
 			console.log(JSON.stringify(friend));
-			$.post("/api/friends", friend,
+			$.post("/api/friends", friend).then(
 				function (data) {
 					if (data) {
 						//return data in modal
 						console.log(data)
+						modal.find('.modal-title').text("Most compatible friend is: ");
+						modal.find('.modal-body').html("<p>" + data.name + "</p><img src='" + data.photo + "' />");
 					}
+
+
 					else { }
 					//no friend?
 				});
