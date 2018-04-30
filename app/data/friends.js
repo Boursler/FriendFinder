@@ -30,6 +30,23 @@ var friends = [
 			3,
 			1,
 		]
+	},
+	{
+		"name": "Joe",
+		"photo": "https://pixabay.com/en/water-waterfall-motion-outdoors-3354062/",
+		"scores": [
+			5,
+			1,
+			4,
+			4,
+			5,
+			1,
+			2,
+			5,
+			4,
+			1
+		]
 	}
+
 ]
 module.exports = friends;

@@ -11,10 +11,10 @@ module.exports = function (app) {
 	});
 	app.post("/api/friends", function (req, res) {
 		var bestFriend = {};
-		var diffArr = [];
+
 		var diffAgg = [];
 		var sameDiff = [];
-		var total_diff = 0;
+
 		selfArr = req.body.scores;
 		console.log("from server: " + selfArr);
 		//compatability logic
@@ -22,19 +22,22 @@ module.exports = function (app) {
 		for (let i = 0; i < friendData.length; i++) {
 			var scores = friendData[i].scores;
 			var friend = friendData[i].name;
+			var diffArr = [];
 			for (let i = 0; i < scores.length; i++) {
 				// console.log("self" + scores);
 				// console.log("friend " + selfArr);
 				var diff = Math.abs(parseInt(scores[i]) - parseInt(selfArr[i]));
-				// console.log("diff " + diff);
+				console.log("diff " + diff);
 
 				diffArr.push({ diff: diff, friend: friend });
-				// console.log(diffArr);
+				console.log(diffArr);
 			}
 			// console.log(diffArr);
+			var total_diff = 0;
 			for (let i = 0; i < diffArr.length; i++) {
 
 				total_diff += diffArr[i].diff;
+				console.log("total diff " + total_diff);
 				friend = diffArr[i].friend;
 			}
 			diffAgg.push({ total_diff: total_diff, name: friend });
@@ -43,15 +46,15 @@ module.exports = function (app) {
 		diffAgg = diffAgg.sort(function (a, b) {
 			return a.total_diff - b.total_diff;
 		});
-		sameDiff.push(diffAgg[0].total_diff);
+		sameDiff.push(diffAgg[0]);
 		for (let i = 1; i < diffAgg.length; i++) {
 			let lowest = diffAgg[0].total_diff;
 			let compare = diffAgg[i].total_diff;
 			if (lowest === compare) {
-				sameDiff.push(compare);
+				sameDiff.push(diffAgg[i]);
 			}
 		}
-		console.log(JSON.stringify(sameDiff));
+		console.log("same diff " + JSON.stringify(sameDiff));
 
 
 
