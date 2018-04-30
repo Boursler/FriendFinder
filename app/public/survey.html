@@ -9,6 +9,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<style>
+		img {
+			height: 250px;
+			width: 250px;
+		}
+	</style>
 
 </head>
 
@@ -25,7 +31,7 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body" id>
 						<p>Please fill out the form completely before closing.</p>
 					</div>
 					<div class="modal-footer">
@@ -35,6 +41,26 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal" id="resultsModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content" id="match">
+					<div class="modal-header">
+						<h5 class="modal-title" id="nameModal"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<a id="photoModal" target="_blank">Link to photo</a>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4 class="panel-title">About You</h4>
@@ -205,20 +231,28 @@
 				"photo": $("#photo").val().trim(),
 				"scores": friendArr
 			};
-			console.log(JSON.stringify(friend));
-			$.post("/api/friends", friend).then(
-				function (data) {
-					if (data) {
-						//return data in modal
-						console.log(data)
-						modal.find('.modal-title').text("Most compatible friend is: ");
-						modal.find('.modal-body').html("<p>" + data.name + "</p><img src='" + data.photo + "' />");
-					}
+			console.log(JSON.stringify("a " + friend));
+			$.post("/api/friends", friend, function (data) {
+				console.log("hello from survey");
+
+				console.log(data);
+				if (data) {
+					//return data in modal
+					console.log("data type client side " + typeof (data));
+					console.log(data.name + "data name");
+					console.log(data.photo + "data photo");
+
+					$("#nameModal").text(data.name);
+					$("#photoModal").attr("href", data.photo);
+					console.log("#resultsModal");
+
+					$("#resultsModal").modal('toggle');
+				}
 
 
-					else { }
-					//no friend?
-				});
+				else { }
+				//no friend?
+			});
 
 		}
 	});

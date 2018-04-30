@@ -27,22 +27,22 @@ module.exports = function (app) {
 				// console.log("self" + scores);
 				// console.log("friend " + selfArr);
 				var diff = Math.abs(parseInt(scores[i]) - parseInt(selfArr[i]));
-				console.log("diff " + diff);
+				// console.log("diff " + diff);
 
 				diffArr.push({ diff: diff, friend: friend });
-				console.log(diffArr);
+				// console.log(diffArr);
 			}
 			// console.log(diffArr);
 			var total_diff = 0;
 			for (let i = 0; i < diffArr.length; i++) {
 
 				total_diff += diffArr[i].diff;
-				console.log("total diff " + total_diff);
+				// console.log("total diff " + total_diff);
 				friend = diffArr[i].friend;
 			}
 			diffAgg.push({ total_diff: total_diff, name: friend });
 		}
-		console.log("diffAgg before sort " + JSON.stringify(diffAgg));
+		// console.log("diffAgg before sort " + JSON.stringify(diffAgg));
 		diffAgg = diffAgg.sort(function (a, b) {
 			return a.total_diff - b.total_diff;
 		});
@@ -54,22 +54,25 @@ module.exports = function (app) {
 				sameDiff.push(diffAgg[i]);
 			}
 		}
-		console.log("same diff " + JSON.stringify(sameDiff));
+		// console.log("same diff " + JSON.stringify(sameDiff));
 
-		best_friend_index = Math.floor(Math.random() * (sameDiff.length + 1));
+		best_friend_index = Math.floor(Math.random() * sameDiff.length);
 		bestFriend = sameDiff[best_friend_index];
-		console.log(JSON.stringify(bestFriend) + " best friend ever");
+		// console.log(JSON.stringify(bestFriend) + " best friend ever");
 		for (let i = 0; i < friendData.length; i++) {
 			if (friendData[i].name === bestFriend.name) {
-				bestFriend = friendData[i].name + friendData[i].photo;
+				bestFriend = { name: friendData[i].name, photo: friendData[i].photo };
 			}
 
 		}
 		console.log(bestFriend + " best friend ever 2");
 		// console.log("diffAgg " + JSON.stringify(diffAgg));
 		//add selfArr to friendData at some point here
-		res.json(bestFriend);
+		// res.json(bestFriend);
+		// res.json(true);
+
 		friendData.push(req.body);
-		console.log(JSON.stringify(friendData));
+		// console.log(JSON.stringify(friendData));
+		res.json(bestFriend);
 	});
 }
