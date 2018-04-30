@@ -24,9 +24,9 @@ module.exports = function (app) {
 			//reset diffArr when comparing against different friends
 			var diffArr = [];
 			for (let i = 0; i < scores.length; i++) {
-				//values are stored as strings in friendData. Parse them when they are needed. 
+				//values are stored as strings in friendData. Parse them when they are needed.
 				var diff = Math.abs(parseInt(scores[i]) - parseInt(selfArr[i]));
-				//add to diffArr as an object to maintain identity as well as diff			
+				//add to diffArr as an object to maintain identity as well as diff
 				diffArr.push({ diff: diff, friend: friend });
 			}
 			//reset total differences at the start of each new build
@@ -40,7 +40,7 @@ module.exports = function (app) {
 			//push to aggregate array
 			diffAgg.push({ total_diff: total_diff, name: friend });
 		}
-		// sort aggregate array 
+		// sort aggregate array
 		diffAgg = diffAgg.sort(function (a, b) {
 			return a.total_diff - b.total_diff;
 		});
@@ -54,7 +54,7 @@ module.exports = function (app) {
 				sameDiff.push(diffAgg[i]);
 			}
 		}
-		//select a random match. If there is only 1 match, then this will be chosen from a list of length 1. The assumption is that anyone with the same totalDiff is equally compatible and so any can be returned		
+		//select a random match. If there is only 1 match, then this will be chosen from a list of length 1. The assumption is that anyone with the same totalDiff is equally compatible and so any can be returned
 		best_friend_index = Math.floor(Math.random() * sameDiff.length);
 		bestFriend = sameDiff[best_friend_index];
 		//find the matching object stored in friendData, searching by name which has been retained throughout the process
@@ -65,7 +65,7 @@ module.exports = function (app) {
 
 		}
 		console.log(bestFriend + " best friend ever 2");
-		//now that operations are done, it is safe to add the new friend to friendData. Since neither fs nor a database is in use, additions will not persist after the server connection is closed. 		
+		//now that operations are done, it is safe to add the new friend to friendData. Since neither fs nor a database is in use, additions will not persist after the server connection is closed.
 		friendData.push(req.body);
 		//send the bestFriend match to the client
 		res.json(bestFriend);
