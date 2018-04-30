@@ -46,6 +46,22 @@ var friends = [
 			4,
 			1
 		]
+	},
+	{
+		"name": "Robert",
+		"photo": "https://pixabay.com/en/woman-girl-curler-hairstyle-3170568/",
+		"scores": [
+			4,
+			1,
+			4,
+			5,
+			2,
+			1,
+			3,
+			5,
+			3,
+			1,
+		]
 	}
 
 ]
