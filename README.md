@@ -5,3 +5,4 @@ It will take the results of a survey and return the name of the most compatible 
 ![oops, it's missing](homepage.png)
 * Take the survey and submit results. A compatible friend will be returned!
 * Close the modal that appears and you will be redirected to the home page, from where you can view the FriendFinder API. This will include everyone's information, including yours!
+* Follow link to see the deployed project on heroku: https://friend-finder-bo.herokuapp.com/
